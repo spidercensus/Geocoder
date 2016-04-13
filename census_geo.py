@@ -25,7 +25,7 @@ def geocode(x):
         for block in response.iter_content(1024):
             block = block.decode()
             buff.write(block)
-    outraw = buff.getvalue()
+    outraw = buff.getvalue().strip()
     cnames = ['id_number', 'input_address', 'match_status', 'match_type', 'matched_address', 'lonlat', 'tigerline_id', 'street_orientation']
     df = pd.read_csv(StringIO(outraw), names=cnames, sep=',')
     #add malformed file handling
