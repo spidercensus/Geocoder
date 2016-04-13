@@ -23,6 +23,7 @@ def geocode(x):
         files = {'addressFile': ''.join(data_chunks[i])}
         response = requests.post(url, data=census_year, files=files)
         for block in response.iter_content(1024):
+            block = block.decode()
             buff.write(block)
     outraw = buff.getvalue()
     cnames = ['id_number', 'input_address', 'match_status', 'match_type', 'matched_address', 'lonlat', 'tigerline_id', 'street_orientation']
